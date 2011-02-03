@@ -49,15 +49,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decompiled\AssemblyData.cs" />
-    <Compile Include="Decompiled\AssemblyRepository.cs" />
-    <Compile Include="Decompiled\AssemblySet.cs" />
-    <Compile Include="Decompiled\MethodData.cs" />
-    <Compile Include="Decompiled\ModuleData.cs" />
-    <Compile Include="Decompiled\NamespaceData.cs" />
-    <Compile Include="Decompiled\NamespaceMember.cs" />
-    <Compile Include="Decompiled\Root.cs" />
-    <Compile Include="Decompiled\TypeData.cs" />
+    <Compile Include="Model\AssemblyData.cs" />
+    <Compile Include="Model\AssemblyRepository.cs" />
+    <Compile Include="Model\AssemblySet.cs" />
+    <Compile Include="Model\MethodData.cs" />
+    <Compile Include="Model\ModuleData.cs" />
+    <Compile Include="Model\NamespaceData.cs" />
+    <Compile Include="Model\NamespaceMember.cs" />
+    <Compile Include="Model\Root.cs" />
+    <Compile Include="Model\TypeData.cs" />
     <Compile Include="DecompilerServices.cs" />
     <Compile Include="GlobalDispatcher.cs" />
     <Compile Include="IModelObject.cs" />

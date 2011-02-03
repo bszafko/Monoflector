@@ -2,8 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:Monoflector"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="Monoflector" Height="350" Width="525"
+        Background="{DynamicResource TabControlHeaderBrush}">
+    <Grid x:Name="_primaryGrid" Margin="4,4,4,4">
         <local:NavigatorControl x:Name="_navigator" DataContext="{Binding}" />
+        <local:AssembliesControl x:Name="_assemblies" DataContext="{Binding}" Visibility="Collapsed" />
     </Grid>
 </Window>

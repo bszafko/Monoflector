@@ -3,9 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Monoflector"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Border CornerRadius="2" Background="{DynamicResource TabControlContentBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0" Margin="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Path:" VerticalAlignment="Center" Margin="2" />
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="4,4,4,4" x:Name="_filenameTextBox" TextChanged="InvalidateCommands"/>
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                    <Button Content="..." Margin="4,4,4,4" x:Name="_browseButton" Click="BrowseButton_Click" />
+                    <Button Content="Add" Margin="4,4,4,4" MinWidth="72" MinHeight="21" x:Name="_addButton" IsEnabled="False"
+                            Command="{x:Static local:Commands.AddAssembly}" CommandParameter="{Binding ElementName=_filenameTextBox, Path=Text}"/>
+                </StackPanel>
+                
+                <TabControl ItemsSource="{Binding AssemblySets}" Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding}">
+                                
+                            </ListView>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </Grid>
         
-    </Grid>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right" 
+                        Margin="4,4,4,4"
+                        Grid.Row="1">
+                <Button Content="OK" Margin="4,1,4,1" MinWidth="72" MinHeight="21" Command="{x:Static local:Commands.ShowNavigator}" />
+            </StackPanel>
+        
+        </Grid>
+    </Border>
 </UserControl>

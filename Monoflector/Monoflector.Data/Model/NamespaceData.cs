@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Monoflector.Data.Decompiled
+namespace Monoflector.Data.Model
 {
     /// <summary>
     /// Represents namespace data.

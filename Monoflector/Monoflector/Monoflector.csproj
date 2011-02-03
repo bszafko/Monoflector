@@ -39,6 +39,9 @@
     <Reference Include="Cecil.Decompiler">
       <HintPath>..\Upstream\Cecil.Decompiler.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\Upstream\AvalonEdit\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil, Version=0.9.4.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\Upstream\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -61,7 +64,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ExecuteEventArgs.cs" />
+    <Compile Include="QueryCanExecuteEventArgs.cs" />
+    <Compile Include="RoutedCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Page Include="AssembliesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BureauBlack\Theme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CodePresenter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,6 +92,10 @@
     <Compile Include="AssembliesControl.xaml.cs">
       <DependentUpon>AssembliesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CodePresenter.xaml.cs">
+      <DependentUpon>CodePresenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

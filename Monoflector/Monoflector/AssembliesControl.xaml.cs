@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Monoflector
 {
@@ -22,6 +23,26 @@ namespace Monoflector
         public AssembliesControl()
         {
             InitializeComponent();
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Browse For Assembly";
+            dlg.Filter = "Dlls (*.dll)|*.dll|Executables (*.exe)|*.exe";
+            dlg.FilterIndex = 0;
+            dlg.CheckFileExists = true;
+            dlg.Multiselect = false;
+
+            if (dlg.ShowDialog().GetValueOrDefault())
+            {
+                _filenameTextBox.Text = dlg.FileName;
+            }
+        }
+
+        private void InvalidateCommands(object sender, TextChangedEventArgs e)
+        {
+            _addButton.IsEnabled = !string.IsNullOrEmpty(_filenameTextBox.Text);
         }
     }
 }

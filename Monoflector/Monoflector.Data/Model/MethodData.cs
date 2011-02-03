@@ -6,7 +6,7 @@ using Mono.Cecil;
 using Cecil.Decompiler;
 using Cecil.Decompiler.Languages;
 
-namespace Monoflector.Data.Decompiled
+namespace Monoflector.Data.Model
 {
     /// <summary>
     /// Represents data about a method.

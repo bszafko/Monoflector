@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Monoflector.Data.Decompiled
+namespace Monoflector.Data.Model
 {
     /// <summary>
     /// Represents an assembly set (list of assemblies defined by the user).
@@ -35,6 +35,14 @@ namespace Monoflector.Data.Decompiled
         public AssemblySet()
         {
 
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssemblySet"/> class.
+        /// </summary>
+        public AssemblySet(string name)
+        {
+            Name = name;
         }
     }
 }

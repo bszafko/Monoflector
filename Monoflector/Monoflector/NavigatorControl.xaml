@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:data="clr-namespace:Monoflector.Data.Decompiled;assembly=Monoflector.Data"
+             xmlns:data="clr-namespace:Monoflector.Data.Model;assembly=Monoflector.Data"
+             xmlns:local="clr-namespace:Monoflector"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <DataTemplate x:Key="TabItemHeaderTemplate">
             <Grid>
@@ -33,18 +35,20 @@
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
                 </TreeView>
-                <StackPanel Margin="0,6,3,0"
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,6,3,0"
                             HorizontalAlignment="Right"
                             Grid.Row="1" Grid.Column="0">
-                    <Button Content="Settings" />
+                    <Button Content="Settings" Margin="4,1,4,1" />
+                    <Button Content="Assemblies" Command="{x:Static local:Commands.ShowAssemblies}" Margin="4,1,4,1" />
                 </StackPanel>
 
                 <GridSplitter Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                
-                <ContentPresenter Content="{Binding ElementName=_typesTreeView, Path=SelectedItem.SourceCode}"
-                                  Margin="3,0,0,0"
-                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                                  Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
+
+                <local:CodePresenter Text="{Binding ElementName=_typesTreeView, Path=SelectedItem.SourceCode}"
+                                     Margin="3,0,0,0"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                     Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
             </Grid>
         </DataTemplate>
         
@@ -55,7 +59,8 @@
             <Setter Property="ContentTemplate" Value="{StaticResource TabItemContentTemplate}"/>
         </Style>
     </UserControl.Resources>
-    <TabControl TabStripPlacement="Left" ItemsSource="{Binding AssemblySet}" ItemContainerStyle="{StaticResource TabItemContainerStyle}">
+    <TabControl ItemsSource="{Binding AssemblySets}" ItemContainerStyle="{StaticResource TabItemContainerStyle}"
+                x:Name="_setsTabControl">
         
     </TabControl>
 </UserControl>

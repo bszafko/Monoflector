@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Monoflector.Data.Decompiled;
+using Monoflector.Data.Model;
 using Mono.Cecil;
 
 namespace Monoflector
@@ -21,18 +21,63 @@ namespace Monoflector
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Gets the root.
+        /// </summary>
+        public Root Root
+        {
+            get;
+            private set;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            var set = new AssemblySet() { Name = ".Net 3.5" };
-            set.Add(new AssemblyData(typeof(string).Assembly));
+            Root = new Root();
+            Root.Load();
+            this.DataContext = Root;
 
-            var root = new Root();
-            root.AssemblySet.Add(set);
-
-            this.DataContext = root;
-
+            WireCommands();
         }
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            Root.Save();
+            base.OnClosing(e);
+        }
+
+        #region Command Handlers
+        private void WireCommands()
+        {
+            Commands.ShowAssemblies.CommandExecuted += ShowAssemblies_CommandExecuted;
+            Commands.ShowNavigator.CommandExecuted += ShowNavigator_CommandExecuted;
+        }
+
+        void ShowNavigator_CommandExecuted(object sender, ExecuteEventArgs e)
+        {
+            ChangePanel(_navigator);
+        }
+
+        void ShowAssemblies_CommandExecuted(object sender, ExecuteEventArgs e)
+        {
+            ChangePanel(_assemblies);
+        }
+        #endregion
+
+        private void ChangePanel(UIElement newPanel)
+        {
+            foreach (UIElement control in _primaryGrid.Children)
+            {
+                if (control == newPanel)
+                {
+                    control.Visibility = System.Windows.Visibility.Visible;
+                }
+                else
+                {
+                    control.Visibility = System.Windows.Visibility.Collapsed;
+                }
+            }
+        } 
     }
 }

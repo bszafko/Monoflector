@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Mono.Cecil;
 
-namespace Monoflector.Data.Decompiled
+namespace Monoflector.Data.Model
 {
     /// <summary>
     /// Represents information about a type.
